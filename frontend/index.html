@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frontend</title>
+</head>
+<body>
+    <h2>Frontend Working</h2>
+
+    <button onclick="callBackend()">Call Backend</button>
+
+    <p id="result"></p>
+
+    <script>
+        async function callBackend() {
+            const response = await fetch("/api/");
+            const data = await response.json();
+            document.getElementById("result").innerText = data.message;
+        }
+    </script>
+</body>
+</html>
