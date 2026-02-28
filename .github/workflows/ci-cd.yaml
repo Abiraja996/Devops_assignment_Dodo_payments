@@ -32,7 +32,7 @@ jobs:
         run: |
           cd backend
           pip install pytest
-          pytest    
+          pytest
 
       - name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -45,16 +45,16 @@ jobs:
         with:
           context: ./backend
           push: true
-          tags: abishek996/backend:latest
+          tags: abishek996/backend:${{ github.run_number }}
 
       - name: Build and Push Frontend Image
         uses: docker/build-push-action@v4
         with:
           context: ./frontend
           push: true
-          tags: abishek996/frontend:latest
+          tags: abishek996/frontend:${{ github.run_number }}
 
       - name: Scan Backend Image with Trivy
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: abishek996/backend:latest
+          image-ref: abishek996/backend:${{ github.run_number }}
